@@ -1,0 +1,6 @@
+export enum Position {
+    WEB_DEVELOPER = 'WEB_DEVELOPER',
+    INTERN = 'INTERN',
+    PROJECT_MANAGER = 'PROJECT_MANAGER',
+    ENGINEER = 'ENGINEER'
+}
