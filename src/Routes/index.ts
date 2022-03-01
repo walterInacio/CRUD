@@ -4,7 +4,6 @@ import { Connection } from "typeorm";
 import employee from "./employee"
 
 export const initRoutes = (app: Express, router: Router, connection: Connection) => {
-    console.log(router);
     router.get('/', (req: Request, res: Response) => {
         res.send("Hello Man");
     });
