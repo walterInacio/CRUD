@@ -3,10 +3,10 @@ import { Express, Request, Response } from "express-serve-static-core";
 import { Connection } from "typeorm";
 import employee from "./employee"
 
-export const initRoutes = (app: Express, router: Router, connection: Connection) => {
+export const initRoutes = (app: Express, router: Router) => {
     router.get('/', (req: Request, res: Response) => {
         res.send("Hello Man");
     });
 
-    employee(app, router, connection);
+    employee(app, router);
 };
