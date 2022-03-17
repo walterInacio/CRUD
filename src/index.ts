@@ -1,30 +1,42 @@
 import "reflect-metadata";
-import express_ from 'express';
-
-import { initRoutes } from './Routes';
-import { createConnection } from "typeorm";
+import express from "express";
+import { Connection, ConnectionOptions, createConnection } from "typeorm";
 import bodyParser from "body-parser";
 
-const configTypeorm = require('../ormconfig.json');
+import configTypeorm from "./config/ormconfig.json";
+import employeeRoutes from './routes/employee';
 
-let express = express_  // *-* MaGiC Happens Here *-*
-let app = express();
-let router = express.Router();
+class App {
+  public express: express.Application;
+  public port = 3000;
+  public connection: Connection;
 
-const port = 3000;
+  public constructor() {
+    this.express = express();
+    this.database();
+  }
 
-const start = async () => {
-    const connection = await createConnection(configTypeorm);
+  private middleware(): void {
+    this.express.use(express.json());
+    this.express.use(express.urlencoded({ extended: true }));
+    this.express.use(bodyParser.json());
+    this.express.listen(this.port, () => {
+      return console.log('Listening on port: ', this.port);
+    })
+  }
 
-    app.use(express.urlencoded({ extended: true }));
+  private database(): void {
+    createConnection(configTypeorm as ConnectionOptions)
+      .then(async (conn) => {
+        this.middleware();
+        this.routes();
+      })
+      .catch((e) => console.log(e));
+  }
 
-    app.use(bodyParser.json());
+  private routes(): void {
+    employeeRoutes(this.express);
+  }
+}
 
-    initRoutes(app, router, connection);
-    
-    app.listen(port, () => {
-      return console.log(`Express is listening at http://localhost:${port}`);
-    });
-  };
-  
-  start().catch(console.error);
+export default new App().express;

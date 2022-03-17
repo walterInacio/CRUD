@@ -1,6 +1,6 @@
 import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { Employee } from "./Employee";
-import { Status } from "./enum/Status";
+import { Employee } from "@models/employee";
+import { Status } from "@models/enum/Status";
 
 @Entity({ name: "Company" })
 export class Company extends BaseEntity {
