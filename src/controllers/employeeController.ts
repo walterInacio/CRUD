@@ -30,7 +30,7 @@ class EmployeeController {
         try {
             const result = await Employee.getRepository().findAndCount();
             if (result) {
-                res.status(StatusCodes.OK).send(result);
+                res.status(StatusCodes.OK).send(result[0]);
             }
         } catch (error) {
             res.status(StatusCodes.BAD_REQUEST).send(error);
