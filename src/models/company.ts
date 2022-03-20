@@ -6,20 +6,20 @@ import { Status } from "@models/enum/Status";
 export class Company extends BaseEntity {
 
     @PrimaryGeneratedColumn('uuid')
-    private id: number;
+    id: number;
 
     @Column({ type: 'varchar' })
-    private name: string;
+    name: string;
 
     @Column({ type: 'varchar' })
-    private fantasyName: string;
+    fantasyName: string;
 
     @Column({ type: 'varchar' })
-    private cnpj: string;
+    cnpj: string;
 
     @OneToMany(() => Employee, employee => employee)
-    private employees: Employee[];
+    employees: Employee[];
 
     @Column({ type: 'varchar' })
-    private status: Status;
+    status: Status;
 }

@@ -16,7 +16,7 @@ class EmployeeController {
 
     public async getById(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {            
-            const result = await Employee.getRepository().findOne(req.params.id);
+            const result = await Employee.getRepository().findOneOrFail(req.params.id);
             if (result) {
                 res.status(StatusCodes.OK).send(result);
             }
@@ -31,6 +31,22 @@ class EmployeeController {
             const result = await Employee.getRepository().findAndCount();
             if (result) {
                 res.status(StatusCodes.OK).send(result[0]);
+            }
+        } catch (error) {
+            res.status(StatusCodes.BAD_REQUEST).send(error);
+        }
+        next();
+    }
+
+    public async update(req: Request, res: Response, next: NextFunction): Promise<void> {
+        try {            
+            const foundEmployee = await Employee.getRepository().findOneOrFail(req.params.id);
+            if (foundEmployee) {
+                await Employee.getRepository().save({
+                    id: foundEmployee.id,
+                    ...req.body
+                })
+                res.status(StatusCodes.NO_CONTENT).send();
             }
         } catch (error) {
             res.status(StatusCodes.BAD_REQUEST).send(error);

@@ -6,4 +6,5 @@ export default (app: express.Application) => {
     app.post(`${BASE_PATH}/create`, EmployeeController.create);
     app.get(`${BASE_PATH}/:id`, EmployeeController.getById);
     app.get(`${BASE_PATH}/all`, EmployeeController.getAll);
+    app.patch(`${BASE_PATH}/update/:id`, EmployeeController.update);
 }
