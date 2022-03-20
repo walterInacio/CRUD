@@ -6,20 +6,20 @@ import { Position } from "@models/enum/Position";
 export class Employee extends BaseEntity {
 
   @PrimaryGeneratedColumn('uuid')
-  private id: number;
+  id: number;
 
   @Column({ type: 'varchar' })
-  private name: string;
+  name: string;
 
   @Column({ type: 'varchar' })
-  private email: string;
+  email: string;
 
   @Column({ type: 'varchar' })
-  private cpf: string;
+  cpf: string;
 
   @Column({ type: 'varchar' })
-  private position: Position;
+  position: Position;
 
-  @ManyToOne(() => Company, company => company)
-  private company: Company;
+  @ManyToOne(() => Company, company => company.id)
+  companyId: string;
 }
