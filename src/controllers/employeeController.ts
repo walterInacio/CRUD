@@ -28,9 +28,12 @@ class EmployeeController {
 
     public async getAll(_req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const result = await Employee.getRepository().findAndCount();
-            if (result) {
-                res.status(StatusCodes.OK).send(result[0]);
+            const result = await Employee.getRepository().find();
+            if (result.length) {
+                res.status(StatusCodes.OK).send(result);
+            }
+            else {
+                res.status(StatusCodes.OK).send([]);
             }
         } catch (error) {
             res.status(StatusCodes.BAD_REQUEST).send(error);

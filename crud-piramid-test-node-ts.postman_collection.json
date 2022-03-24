@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "2501ab2d-1da9-43a5-909f-8a2cd144a71d",
+		"_postman_id": "a9c1b0f4-5016-4e5b-a069-9be5f5546431",
 		"name": "crud-piramid-test-node-ts",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -46,17 +46,22 @@
 					"name": "all",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
 						"url": {
-							"raw": "http://localhost:3000/employee/all",
+							"raw": "http://localhost:3000/employees",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"employee",
-								"all"
+								"employees"
 							]
 						}
 					},
@@ -76,6 +81,47 @@
 							"port": "3000",
 							"path": [
 								"employee",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Update Employee",
+			"item": [
+				{
+					"name": "update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"position\": \"\",\n    \"name\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/employee/update/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"employee",
+								"update",
 								":id"
 							],
 							"variable": [
