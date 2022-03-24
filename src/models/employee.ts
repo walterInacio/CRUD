@@ -2,7 +2,7 @@ import { BaseEntity, Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "t
 import { Company } from "@models/company";
 import { Position } from "@models/enum/Position";
 
-@Entity({ name: "Employee" })
+@Entity({ name: "employee" })
 export class Employee extends BaseEntity {
 
   @PrimaryGeneratedColumn('uuid')
@@ -21,5 +21,5 @@ export class Employee extends BaseEntity {
   position: Position;
 
   @ManyToOne(() => Company, company => company.id)
-  companyId: string;
+  company: string;
 }

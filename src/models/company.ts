@@ -2,7 +2,7 @@ import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "t
 import { Employee } from "@models/employee";
 import { Status } from "@models/enum/Status";
 
-@Entity({ name: "Company" })
+@Entity({ name: "company" })
 export class Company extends BaseEntity {
 
     @PrimaryGeneratedColumn('uuid')
